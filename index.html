@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./script.js" type="module" defer></script>
+    <title>Pokédex</title>
+  </head>
+  <body class="body">
+    <header class="pg-heading">
+      <img
+        class="pg-heading__logo-img"
+        src="./resources/images/logo.png"
+        alt="Pokémon logo"
+      />
+      <h1 class="pg-heading__title">Pokédex</h1>
+    </header>
+
+    <div class="search">
+      <form class="search__form">
+        <input class="search__form__textbox" type="text" name="search-bar" />
+        <button class="search__form__btn search__form__btn--search">
+          Search
+        </button>
+        <button class="search__form__btn search__form__btn--reset">
+          Reset
+        </button>
+      </form>
+    </div>
+
+    <div class="cards"></div>
+
+    <div class="pagination-container"></div>
+
+    <footer class="footer">
+      <p class="footer__text">Made by Marielle Louisse Lopez</p>
+    </footer>
+  </body>
+</html>
