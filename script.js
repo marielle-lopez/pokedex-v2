@@ -1,4 +1,4 @@
-import { getPokemon } from "./scripts/pokemon.js";
+import { getPokemon, filterPokemon } from "./scripts/pokemon.js";
 import { displayCards, displayPageNumbers } from "./scripts/dom.js";
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -6,4 +6,17 @@ window.addEventListener("DOMContentLoaded", async () => {
     displayCards(res[0]);
     displayPageNumbers(res[1]);
   });
+
+  document
+    .querySelector(".search__form__btn--search")
+    .addEventListener("click", async (event) => {
+      event.preventDefault();
+      const query = document.querySelector(".search__form__textbox").value;
+
+      if (query) {
+        await filterPokemon(query).then((res) => {
+          displayCards(res);
+        });
+      }
+    });
 });
