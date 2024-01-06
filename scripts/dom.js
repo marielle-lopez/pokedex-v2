@@ -2,6 +2,7 @@ import { getPokemon } from "./pokemon.js";
 
 export const displayPageNumbers = (totalPagesNumber) => {
   const pagesContainer = document.querySelector(".pagination-container");
+  pagesContainer.replaceChildren();
 
   Array.from(Array(totalPagesNumber).keys()).map((number) => {
     const textNode = document.createTextNode(number + 1);
