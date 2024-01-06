@@ -1,3 +1,5 @@
+import { getPokemon } from "./pokemon.js";
+
 export const displayPageNumbers = (totalPagesNumber) => {
   const pagesContainer = document.querySelector(".pagination-container");
 
@@ -10,6 +12,14 @@ export const displayPageNumbers = (totalPagesNumber) => {
     elementNode.append(textNode);
 
     pagesContainer.appendChild(elementNode);
+    elementNode.addEventListener("click", async () => {
+      await getPokemon(number + 1).then((res) => {
+        document.querySelector(".cards").replaceChildren();
+        document.querySelector(".pagination-container").replaceChildren();
+        displayCards(res[0]);
+        displayPageNumbers(res[1]);
+      });
+    });
   });
 };
 
