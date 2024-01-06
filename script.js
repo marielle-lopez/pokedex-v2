@@ -27,6 +27,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       if (query) {
         await filterPokemon(query).then((res) => {
           displayCards(res);
+          document.querySelector(".pagination-container").replaceChildren();
         });
       }
     });
