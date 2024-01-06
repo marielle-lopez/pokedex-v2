@@ -1,4 +1,4 @@
-export const getAllPokemon = async (pageNumber) => {
+export const getPokemon = async (pageNumber) => {
   let offset = 0;
 
   const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=40`;
@@ -30,13 +30,22 @@ export const getAllPokemon = async (pageNumber) => {
 
   const allPokemonData = await Promise.all(pokemonInfoPromises);
 
-  const allPokemon = allPokemonData.map((pokemon) => {
+  const pokemon = allPokemonData.map((pokemon) => {
     return {
       name: pokemon.name,
-      type: pokemon.types.map((type) => type.name),
+      type: pokemon.types.map((type) => type.type.name),
       imgURL: pokemon.sprites["front_default"],
     };
   });
 
-  console.log(allPokemon);
+  return pokemon;
 };
+
+// print("hello world")
+//  console.log(thisGame)
+//   if ()
+// parent.info
+//1+1
+//clientInformation.userAgent.replace
+//getAllPokemon(shiny)
+// pepepe
