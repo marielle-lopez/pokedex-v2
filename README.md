@@ -5,8 +5,9 @@
 ### January 6, 2024
 
 - Allowed Pokémon to display on the page
+- Added page numbers based on response from PokéAPI
 
-Applied DOM manipulation to display Pokémon onto the page.
+Applied DOM manipulation to display Pokémon and page numbers.
 
 ### January 5, 2024
 
