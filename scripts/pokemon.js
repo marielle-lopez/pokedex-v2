@@ -38,7 +38,7 @@ export const getPokemon = async (pageNumber) => {
     };
   });
 
-  return pokemon;
+  return [pokemon, totalPages];
 };
 
 // print("hello world")

@@ -2,6 +2,12 @@
 
 ## Task Completion History
 
+### January 6, 2024
+
+- Allowed Pokémon to display on the page
+
+Applied DOM manipulation to display Pokémon onto the page.
+
 ### January 5, 2024
 
 - Added foundational HTML and styling

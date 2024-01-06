@@ -64,6 +64,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  margin-bottom: 40px;
 }
 
 .card {
@@ -93,6 +94,25 @@
   &__type {
     margin: 0;
   }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.page-btn {
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+
+  color: #9e8e3f;
+  border: none;
+  border-radius: 5px;
+  background-color: #ebdc94;
 }
 
 .footer {

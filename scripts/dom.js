@@ -1,3 +1,18 @@
+export const displayPageNumbers = (totalPagesNumber) => {
+  const pagesContainer = document.querySelector(".pagination-container");
+
+  Array.from(Array(totalPagesNumber).keys()).map((number) => {
+    const textNode = document.createTextNode(number + 1);
+    const elementNode = document.createElement("button");
+
+    elementNode.classList.add("page-btn");
+
+    elementNode.append(textNode);
+
+    pagesContainer.appendChild(elementNode);
+  });
+};
+
 export const createCard = (pokemonName, imgURL, type) => {
   const card = document.createElement("div");
 
