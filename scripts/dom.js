@@ -1,5 +1,27 @@
 import { getPokemon } from "./pokemon.js";
 
+const displayModal = (name) => {
+  console.log("Clicked!");
+
+  const modal = document.querySelector(".modal");
+  const overlay = document.querySelector(".overlay");
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+
+  const closeBtn = document.querySelector(".modal__top-bar__close");
+  closeBtn.addEventListener("click", (event) => {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+  });
+
+  const nameElement = document.querySelector(".modal__top-bar__name");
+  const nameTextNode = document.createTextNode(name);
+  nameElement.append(nameTextNode);
+
+  // const typeElement = document.querySelector(".modal__top-bar__type");
+  // const typeTextNode = document.createTextNode()
+};
+
 export const displayPageNumbers = (totalPagesNumber) => {
   const pagesContainer = document.querySelector(".pagination-container");
   pagesContainer.replaceChildren();
@@ -40,6 +62,7 @@ export const createCard = (pokemonName, imgURL, type) => {
   elementNodeType.append(textNodeType);
 
   card.classList.add("card");
+  card.id = pokemonName;
   elementNodeName.classList.add("card__name");
   elementNodeImg.classList.add("card__img");
   elementNodeType.classList.add("card__type");
@@ -47,6 +70,10 @@ export const createCard = (pokemonName, imgURL, type) => {
   card.appendChild(elementNodeName);
   card.appendChild(elementNodeImg);
   card.appendChild(elementNodeType);
+
+  card.addEventListener("click", (event) => {
+    displayModal(pokemonName);
+  });
 
   return card;
 };
