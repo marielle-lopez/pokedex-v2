@@ -52,6 +52,7 @@ export const createCard = (pokemonName, imgURL, type) => {
 
 export const displayCards = (pokemon) => {
   const cardsContainer = document.querySelector(".cards");
+  cardsContainer.replaceChildren();
 
   pokemon.map((item) => {
     const card = createCard(item.name, item.imgURL, item.type);
