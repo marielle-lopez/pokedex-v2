@@ -1,4 +1,6 @@
 export const createCard = (pokemonName, imgURL, type) => {
+  const card = document.createElement("div");
+
   const textNodeName = document.createTextNode(pokemonName);
   const textNodeType = document.createTextNode(type.join(", "));
 
@@ -11,7 +13,11 @@ export const createCard = (pokemonName, imgURL, type) => {
   elementNodeName.append(textNodeName);
   elementNodeType.append(textNodeType);
 
-  const card = document.createElement("div");
+  card.classList.add("card");
+  elementNodeName.classList.add("card__name");
+  elementNodeImg.classList.add("card__img");
+  elementNodeType.classList.add("card__type");
+
   card.appendChild(elementNodeName);
   card.appendChild(elementNodeImg);
   card.appendChild(elementNodeType);
