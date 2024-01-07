@@ -21,11 +21,14 @@ const displayModal = (pokemon) => {
 
   const typeContainer = document.querySelector(".modal__top-bar__type");
   typeContainer.replaceChildren();
-  const typeTextNode = document.createTextNode(pokemon.type.join(", "));
-  const typeElement = document.createElement("span");
-  typeElement.classList.add("modal__top-bar__type__item");
-  typeElement.append(typeTextNode);
-  typeContainer.appendChild(typeElement);
+
+  pokemon.type.map((type) => {
+    const typeElement = document.createElement("img");
+    typeElement.classList.add("modal__top-bar__type__item");
+    typeElement.src = `../resources/images/${type}.png`;
+    typeElement.alt = `${type} type symbol`;
+    typeContainer.appendChild(typeElement);
+  });
 
   const imgElement = document.querySelector(".modal__info__sprite");
   imgElement.src = pokemon.imgURL;
