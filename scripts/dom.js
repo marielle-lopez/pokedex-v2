@@ -1,6 +1,6 @@
 import { getPokemon } from "./pokemon.js";
 
-const displayModal = (name) => {
+const displayModal = (pokemon) => {
   console.log("Clicked!");
 
   const modal = document.querySelector(".modal");
@@ -15,11 +15,21 @@ const displayModal = (name) => {
   });
 
   const nameElement = document.querySelector(".modal__top-bar__name");
-  const nameTextNode = document.createTextNode(name);
+  nameElement.replaceChildren();
+  const nameTextNode = document.createTextNode(pokemon.name);
   nameElement.append(nameTextNode);
 
-  // const typeElement = document.querySelector(".modal__top-bar__type");
-  // const typeTextNode = document.createTextNode()
+  const typeContainer = document.querySelector(".modal__top-bar__type");
+  typeContainer.replaceChildren();
+  const typeTextNode = document.createTextNode(pokemon.type.join(", "));
+  const typeElement = document.createElement("span");
+  typeElement.classList.add("modal__top-bar__type__item");
+  typeElement.append(typeTextNode);
+  typeContainer.appendChild(typeElement);
+
+  const imgElement = document.querySelector(".modal__info__sprite");
+  imgElement.src = pokemon.imgURL;
+  imgElement.alt = pokemon.name;
 };
 
 export const displayPageNumbers = (totalPagesNumber) => {
@@ -46,23 +56,23 @@ export const displayPageNumbers = (totalPagesNumber) => {
   });
 };
 
-export const createCard = (pokemonName, imgURL, type) => {
+export const createCard = (pokemon) => {
   const card = document.createElement("div");
 
-  const textNodeName = document.createTextNode(pokemonName);
-  const textNodeType = document.createTextNode(type.join(", "));
+  const textNodeName = document.createTextNode(pokemon.name);
+  const textNodeType = document.createTextNode(pokemon.type.join(", "));
 
   const elementNodeName = document.createElement("p");
   const elementNodeImg = document.createElement("img");
   const elementNodeType = document.createElement("p");
 
-  elementNodeImg.src = imgURL;
+  elementNodeImg.src = pokemon.imgURL;
 
   elementNodeName.append(textNodeName);
   elementNodeType.append(textNodeType);
 
   card.classList.add("card");
-  card.id = pokemonName;
+  card.id = pokemon.name;
   elementNodeName.classList.add("card__name");
   elementNodeImg.classList.add("card__img");
   elementNodeType.classList.add("card__type");
@@ -72,7 +82,7 @@ export const createCard = (pokemonName, imgURL, type) => {
   card.appendChild(elementNodeType);
 
   card.addEventListener("click", (event) => {
-    displayModal(pokemonName);
+    displayModal(pokemon);
   });
 
   return card;
@@ -83,7 +93,7 @@ export const displayCards = (pokemon) => {
   cardsContainer.replaceChildren();
 
   pokemon.map((item) => {
-    const card = createCard(item.name, item.imgURL, item.type);
+    const card = createCard(item);
     cardsContainer.appendChild(card);
   });
 };
