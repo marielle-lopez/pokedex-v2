@@ -8,6 +8,17 @@ window.addEventListener("DOMContentLoaded", async () => {
   });
 
   document
+    .querySelector(".search__form__btn--reset")
+    .addEventListener("click", async (event) => {
+      event.preventDefault();
+      await getPokemon(1).then((res) => {
+        document.querySelector(".search__form__textbox").value = "";
+        displayCards(res[0]);
+        displayPageNumbers(res[1]);
+      });
+    });
+
+  document
     .querySelector(".search__form__btn--search")
     .addEventListener("click", async (event) => {
       event.preventDefault();
@@ -16,6 +27,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       if (query) {
         await filterPokemon(query).then((res) => {
           displayCards(res);
+          document.querySelector(".pagination-container").replaceChildren();
         });
       }
     });
