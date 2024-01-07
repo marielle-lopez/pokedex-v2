@@ -1,6 +1,6 @@
 import { getPokemon } from "./pokemon.js";
 
-const displayModal = (pokemon) => {
+const displayModal = async (pokemon) => {
   console.log("Clicked!");
 
   const modal = document.querySelector(".modal");
@@ -33,6 +33,39 @@ const displayModal = (pokemon) => {
   const imgElement = document.querySelector(".modal__info__sprite");
   imgElement.src = pokemon.imgURL;
   imgElement.alt = pokemon.name;
+
+  const abilitiesPromises = pokemon.abilities.map((ability) =>
+    fetch(ability.url)
+  );
+
+  const data = await Promise.all(abilitiesPromises);
+
+  const typesContainer = document.querySelector(".modal__info__abilities");
+  typesContainer.replaceChildren();
+
+  data.map(async (item) => {
+    const itemObj = await item.json();
+    const name = itemObj.name;
+    const description = itemObj["effect_entries"].filter(
+      (property) => property.language.name === "en"
+    )[0]["short_effect"];
+
+    const typeContainer = document.createElement("div");
+    typeContainer.classList.add("modal__info__abilities__ability");
+
+    const nameTextNode = document.createTextNode(name);
+    const nameElement = document.createElement("p");
+    nameElement.append(nameTextNode);
+
+    const descriptionTextNode = document.createTextNode(description);
+    const descriptionElement = document.createElement("p");
+    descriptionElement.append(descriptionTextNode);
+
+    typeContainer.appendChild(nameElement);
+    typeContainer.appendChild(descriptionElement);
+
+    typesContainer.appendChild(typeContainer);
+  });
 };
 
 export const displayPageNumbers = (totalPagesNumber) => {

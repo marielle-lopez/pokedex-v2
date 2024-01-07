@@ -31,10 +31,20 @@ export const getPokemon = async (pageNumber) => {
   const allPokemonData = await Promise.all(pokemonInfoPromises);
 
   const pokemon = allPokemonData.map((pokemon) => {
+    const abilities = pokemon.abilities
+      .map((ability) => ability)
+      .map((item) => {
+        return {
+          name: item.ability.name,
+          url: item.ability.url,
+        };
+      });
+
     return {
       name: pokemon.name,
       type: pokemon.types.map((type) => type.type.name),
       imgURL: pokemon.sprites["front_default"],
+      abilities: abilities,
     };
   });
 
